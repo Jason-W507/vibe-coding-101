@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一个前端交互示例</title>
+<style>
+  body { font-family: sans-serif; max-width: 36rem; margin: 3rem auto; padding: 1rem; }
+  button { font: inherit; padding: 0.5rem 1rem; }
+</style>
+<h1>页面内的计数</h1>
+<p>已点击：<output id="count" aria-live="polite">0</output> 次</p>
+<button id="add" type="button">增加一次</button>
+<p>本例只更新当前页面，刷新后会重新从 0 开始。</p>
+<script>
+  let count = 0;
+  const output = document.querySelector("#count");
+  const button = document.querySelector("#add");
+  button.addEventListener("click", () => {
+    count += 1;
+    output.textContent = String(count);
+  });
+</script>
+</html>

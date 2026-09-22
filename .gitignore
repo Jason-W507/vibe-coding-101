@@ -1,0 +1,34 @@
+# Local planning, drafting, and browser QA artifacts
+.scratch/
+.playwright-cli/
+.playwright-mcp/
+
+# Local agent and editor state
+.agents/
+.codex/
+.idea/
+.vscode/
+
+# Python caches and virtual environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# JavaScript dependencies and build artifacts
+node_modules/
+dist/
+build/
+
+# Environment files and local secrets
+.env
+.env.*
+!.env.example
+
+# Operating-system metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
