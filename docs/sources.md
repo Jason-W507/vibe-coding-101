@@ -29,8 +29,10 @@
 
 ## 开发与维护
 
-- [Git 官方参考文档](https://git-scm.com/docs)：命令的完整语义，应结合工作区、暂存区与仓库理解。
-- [GitHub：关于 Git](https://docs.github.com/en/get-started/using-git/about-git)：版本管理与托管平台的基本区别。
+- [Git 官方参考文档](https://git-scm.com/docs)与 [Pro Git 中文版](https://git-scm.com/book/zh/v2)：命令的完整语义与版本控制实操指南。
+- [GitHub：关于 Git](https://docs.github.com/en/get-started/using-git/about-git)与[从仓库中移除敏感数据](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)：版本管理、托管平台与密钥泄露后的处理说明。
+- [语义化版本 2.0.0（中文版）](https://semver.org/lang/zh-CN/)：理解 `MAJOR.MINOR.PATCH` 版本号约定。
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/)：常见 Web 应用安全风险（注入、越权访问、配置错误等）的权威概览。
 - [GitLab：部署与发布](https://docs.gitlab.com/user/get_started/get_started_deploy_release/)：以一个平台的工作方式说明相关概念；正文不要求使用该平台。
 - [Dijkstra：The Humble Programmer](https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html)：关于程序设计与正确性的一手文章，正文引用其对测试边界的讨论。
 

@@ -4,7 +4,7 @@
 
 ## 三类常见情况
 
-**语法错误**表示代码的写法不符合语言的结构规则，例如缺少必要符号或不正确的缩进。程序通常无法按原样进入预期的执行过程。
+**语法错误**（如 Python 的 `SyntaxError`、`IndentationError`）表示代码的写法不符合语言的结构规则，例如缺少必要符号或不正确的缩进。在 Python 等语言中，文件执行前会先经过整体语法解析：只要文件里有一处语法错误，哪怕错在最后一行，整个文件也不会开始执行。
 
 **运行中的异常**发生在代码执行某项操作时，例如把不能表示整数的文本交给整数转换，或者尝试打开不存在的文件。异常可以携带类型、说明和调用位置等信息。
 
@@ -12,7 +12,18 @@
 
 ## 读错误信息要连接到上下文
 
-Python 的异常输出常包含调用过程和最后的异常类型，例如 `ValueError`。调用过程帮助你看到程序经过哪些位置到达这里，异常类型则说明失败属于哪类操作问题。
+Python 的异常输出（Traceback）包含调用过程和最后的异常类型。未被捕获的异常会沿着函数调用栈一层层向上传播，最终终止程序并打印出如下回溯信息（浏览器 `F12` 控制台中的 JavaScript 报错调用栈同理）：
+
+```text
+Traceback (most recent call last):
+  File "D:\reading-notes\app\main.py", line 12, in <module>
+    save_progress("三本")
+  File "D:\reading-notes\app\main.py", line 5, in save_progress
+    count = int(raw_count)
+ValueError: invalid literal for int() with base 10: '三本'
+```
+
+阅读时可以按三步走：① **先看最后一行**，冒号前是异常类型（`ValueError`），冒号后是具体原因；② **从下往上找属于自己项目的文件和行号**（`most recent call last` 表示越往下越接近出错点，若最底层是第三方库内部代码，就往上找自己项目的调用处，如这里的 `main.py` 第 5 行）；③ **对照常见异常类型判断方向**：`NameError`（名字拼错或未定义）、`TypeError`（类型不匹配或参数个数不对）、`AttributeError`（常见于前一步意外拿到了 `None`，报 `'NoneType' object has no attribute ...`）、`KeyError` / `IndexError`（字典缺键或列表下标越界）、`ModuleNotFoundError`（包未安装或跑错了虚拟环境）、`FileNotFoundError`（路径或工作目录不对）。
 
 最后出错的一行很重要，但根因不一定只在那一行。它收到的错误数据可能来自更早的读取、转换或调用。只把最后一句报错交给 AI，有时会丢掉解释问题所需的上下文。
 
@@ -33,7 +44,7 @@ else:
 
 这段代码会输出输入提示。`int` 无法按这里的规则把 `三本` 转为整数，于是进入匹配的异常处理分支。成功路径则放在 `else` 中。[Python 的错误与异常教程](https://docs.python.org/3/tutorial/errors.html#handling-exceptions)说明了这些控制流程。
 
-捕获异常并没有让原先失败的转换自动成功。如果仅仅吞掉异常，再继续告诉用户“处理成功”，界面可能安静了，问题却仍然存在。
+捕获异常并没有让原先失败的转换自动成功。审查 AI 生成的代码时，要特别警惕形如 `except Exception: pass`（或空的 `catch (e) {}`）这类**无声吞掉所有异常**的写法——如果捕获错误后既不记录也不反馈，甚至继续告诉用户“处理成功”，界面虽然安静了，故障却被掩盖了。
 
 ## 失败时已经发生了什么
 

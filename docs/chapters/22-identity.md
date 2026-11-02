@@ -21,7 +21,7 @@ Cookie 是浏览器按照相应规则保存并随请求携带数据的一种机�
 后续请求携带会话标识 → 服务器取得身份 → 检查本次操作的权限
 ```
 
-另一类设计可能使用带签名的数据令牌。服务器仍需按设计检查其有效性、适用范围和权限。把一段文字命名为 `token`，不意味着它自然具备加密、不可伪造或永久安全的能力。相关概念的联系见 [OWASP 会话管理说明](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)。
+另一类常见设计使用带签名的结构化令牌，例如 **JWT（JSON Web Token）**。使用 JWT 时有三个常被忽略的事实：① JWT 的载荷（payload）通常只是经过 Base64URL 编码而非加密，**任何人拿到令牌都能解码看到里面的明文字段**，绝不能在里面存放密码或密钥；② 签名只保证内容未被篡改，服务端每次收到请求时必须真正验证签名和过期时间；③ 不查库的纯无状态 JWT 在过期前很难由服务端单方面立即吊销。相关概念的联系见 [OWASP 会话管理说明](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)。
 
 ## 浏览器怎样收到与发送 Cookie
 
@@ -37,7 +37,9 @@ Set-Cookie: session=example-session-id; HttpOnly; Secure; SameSite=Lax
 Cookie: session=example-session-id
 ```
 
-`HttpOnly` 限制页面脚本通过相应接口读取这个 Cookie；`Secure` 约束其通过安全连接发送；`SameSite` 影响跨站情境下的携带行为。这些属性处理不同问题，具体选择需要结合应用场景，也不能代替服务器的授权判断。
+`HttpOnly` 禁止页面里的 JavaScript 通过 `document.cookie` 读取该 Cookie（防止发生 XSS 时令牌被脚本直接偷走；这也是为什么把会话令牌直接存在浏览器 `localStorage` 里一旦遇到 XSS 就会暴露）；`Secure` 要求仅通过 HTTPS 加密连接发送；`SameSite` 控制跨站请求时是否自动携带 Cookie，用于防范**跨站请求伪造（CSRF）**。这些属性各自处理一部分风险，都不能代替后端的授权检查。
+
+此外，许多应用会提供“使用 Google / GitHub 账号登录”（通常基于 **OAuth 2.0 / OpenID Connect** 协议）。由于登录、密码散列（如 `Argon2id`、`bcrypt`）和会话管理细节极易出错，实际项目中应优先采用成熟的认证服务或框架内置模块，而不建议让 AI 从零手写整套密码与令牌逻辑。
 
 Cookie 除了登录，还可以承担其他用途。因此，在浏览器中看见 Cookie，并不自动说明当前已经登录。
 

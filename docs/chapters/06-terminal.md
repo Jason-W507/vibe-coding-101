@@ -4,7 +4,17 @@ AI 经常给出一行命令，让你“在终端里运行”。要理解这句�
 
 ## 终端和 Shell 分别做什么
 
-今天桌面上的终端通常是一个应用，提供文字输入输出的界面。**Shell** 是接收并解释命令的程序，PowerShell、Bash 和 Zsh 都属于常见例子。同一个终端应用可以打开不同的 Shell。
+今天桌面上的终端通常是一个应用，提供文字输入输出的界面。**Shell** 是接收并解释命令的程序，常见的有 Windows 上的 **PowerShell** 与传统命令提示符 **cmd**，以及 macOS（默认 **Zsh**）和 Linux（常见 **Bash**）上的 Shell。同一个终端应用可以打开不同的 Shell。
+
+学会看提示符能帮你立刻分辨当前处于哪种环境：`PS C:\work>` 开头通常是 PowerShell，`C:\work>` 是 `cmd`，而结尾是 `$` 或 `%`（如 `lin@mac ~ %`）通常是 Bash 或 Zsh。**这是与 AI 协作时极易踩坑的地方**：AI 生成的命令往往默认采用 Linux/macOS 的 Bash 语法（例如用 `export KEY=1` 设置环境变量、用 `rm -rf` 删除目录、用 `&&` 连接两条命令），如果直接复制到 Windows 自带的 Windows PowerShell 5.1 或 `cmd` 中运行就会报错。
+
+| 常见操作 | PowerShell（Windows） | Bash / Zsh（macOS / Linux） | cmd（Windows 传统） |
+| --- | --- | --- | --- |
+| 查看当前目录 | `Get-Location`（或 `pwd`） | `pwd` | `cd` |
+| 列出目录内容 | `Get-ChildItem`（或 `ls`） | `ls -la` | `dir` |
+| 切换目录 | `Set-Location 路径`（或 `cd 路径`） | `cd 路径` | `cd /d 路径` |
+| 临时设置环境变量 | `$env:PORT="8000"` | `export PORT=8000` | `set PORT=8000` |
+| 查找命令指向哪个程序 | `Get-Command python` 或 `where.exe python` | `which python3` | `where python` |
 
 你在编辑器里打开的集成终端，也会运行某个 Shell。窗口嵌在编辑器里，不代表所有命令都由编辑器自己执行。
 
@@ -34,7 +44,7 @@ reading-notes/
 
 如果 PowerShell 当前位于 `reading-notes`，`Get-ChildItem .\data` 会列出其下 `data` 的内容。如果当前位于 `reading-notes\app`，这个相对位置就变了。程序报“找不到文件”，有时只需要解释清楚它究竟从哪里出发。
 
-`Set-Location` 用来改变当前位置。对于已经存在的目录，可以把路径作为参数传给它。路径中有空格时，要通过正确的引用方式把它作为一个整体；PowerShell 中常使用引号。具体路径示例必须与你的目录对应，书中的示意名字不会自动在电脑上存在。
+`Set-Location`（别名 `cd`）用来改变当前位置。路径中有空格时，必须用引号把它括成一个整体，例如 `cd "C:\work\reading notes"`；在终端里输入文件或目录名的前几个字母后按 `Tab` 键，Shell 会自动补全真实存在的名字并替带空格的路径加上引号。具体路径示例必须与你的目录对应，书中的示意名字不会自动在电脑上存在。
 
 “项目根目录”通常指这份项目选定的顶层目录。它不一定是磁盘根目录，也不等于终端每次打开时默认进入的位置。
 
@@ -50,7 +60,12 @@ PowerShell 中可以用下面的表达式查看当前环境中的 PATH：
 $env:PATH
 ```
 
-它是一组供查找使用的位置，不是项目全部文件的目录列表。修改环境设置后，已经打开的进程也未必自动得到新值，因为环境往往是在进程创建时继承的。PowerShell 对命令查找以及运行当前目录下程序的规则，见[命令优先级文档](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_command_precedence)。
+它是一组供查找使用的目录列表（Windows 用分号 `;` 分隔，macOS/Linux 用冒号 `:` 分隔），不是项目全部文件的列表。当你在终端看到以下三类报错时，几乎都是因为工具还没安装，或者它的安装目录不在当前 `PATH` 中：
+- PowerShell：`无法将“xxx”项识别为 cmdlet、函数、脚本文件或可运行程序的名称`
+- cmd：`'xxx' 不是内部或外部命令，也不是可运行的程序`
+- Bash / Zsh：`command not found: xxx`
+
+需要注意三点实用细节：第一，**安装新软件或修改系统 `PATH` 后，必须关闭并重新打开终端（在 VS Code 等编辑器里通常需要重启整个编辑器）**，因为已运行的进程不会自动获取新的环境变量；第二，在 PowerShell 或 Bash 中运行当前目录下的脚本或程序，出于安全规则必须显式写成 `.\app.exe` 或 `./script.sh`，不能只写文件名；第三，Windows PowerShell 首次运行 `npm` 或激活 Python 虚拟环境脚本（`.ps1`）时，若提示“因为在此系统上禁止运行脚本”，属于 PowerShell 执行策略（ExecutionPolicy）限制，需要按提示调整当前用户的执行策略或改用 `cmd` / Git Bash。PowerShell 对命令查找的详细规则见[命令优先级文档](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_command_precedence)。
 
 ## 一条命令里都有什么
 
@@ -58,7 +73,7 @@ $env:PATH
 
 教程或报错截图中出现的 `PS C:\work>`、`$` 等内容，可能是命令提示符的一部分。它用来显示当前环境，不一定是需要输入的命令正文。判断时应看代码块的说明，而不是把整行外观原样复制。
 
-程序还有输入和输出通道。普通结果与错误信息可以走不同通道，程序结束时通常还会给出退出状态。屏幕上出现了文字，不足以单独说明任务成功；需要结合它的含义和退出结果。
+程序还有输入和输出通道。普通结果（标准输出 `stdout`）与错误信息（标准错误 `stderr`）可以走不同通道，程序结束时还会返回一个整数**退出码（exit code）**：按惯例 `0` 表示成功，非 `0` 表示出错（PowerShell 中可用 `$LASTEXITCODE` 查看）。另外在终端里，按下 `Ctrl + C` 的作用是**向当前正在前台运行的程序发送中断信号（停止运行）**，而不是复制文本；在 Windows 终端里复制粘贴通常用 `Ctrl + Shift + C` / `V` 或鼠标右键。
 
 ## 怎样读懂“运行环境不对”
 
