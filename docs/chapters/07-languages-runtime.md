@@ -62,6 +62,9 @@ flowchart LR
 
 语言怎样表示对象和执行程序，可进一步阅读 [Python 数据模型](https://docs.python.org/3/reference/datamodel.html)。本教程中的短示例使用 Python 3 的稳定语法，不依赖第三方包。
 
+> [!TIP]
+> **实战提示**：看到 `.py`、`.js`、`.ts` 文件时，先分清它运行在哪个环境：**浏览器里的 JavaScript 不能直接读写本机任意文件，Node.js 里也没有浏览器的 `document`。**
+
 <!-- navigation -->
 
 ---

@@ -33,4 +33,4 @@
 | AI 为什么看不到文件、记不住要求，或者只是说自己做完了？ | [上下文、记忆与工具执行](chapters/33-models-context.md) | [协作与验证](chapters/34-ai-collaboration.md)、[局限与证据](chapters/35-ai-limits.md) |
 | 我不会独立写代码，怎样描述需求和判断修改？ | [与 AI 讨论需求和修改](chapters/34-ai-collaboration.md) | [全景导览](chapters/00-overview.md)、[AI 的局限](chapters/35-ai-limits.md) |
 
-[返回完整目录](../README.md) · [示例说明](../examples/README.md) · [反馈疑问](../CONTRIBUTING.md)
+[返回完整目录](../README.md) · [常见术语速查表](glossary.md) · [防坑自检清单](checklist.md) · [示例说明](../examples/README.md) · [反馈疑问](../CONTRIBUTING.md)
