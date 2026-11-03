@@ -1,0 +1,16 @@
+{
+  "name": "vibe-coding-101",
+  "private": true,
+  "type": "module",
+  "description": "面向非计算机专业人士的计算机、软件开发与 AI 编程知识教程",
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "mermaid": "^11.4.1",
+    "vitepress": "^1.6.3",
+    "vitepress-plugin-mermaid": "^2.0.17"
+  }
+}

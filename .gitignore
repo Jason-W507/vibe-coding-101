@@ -22,6 +22,10 @@ venv/
 node_modules/
 dist/
 build/
+.vitepress/cache/
+.vitepress/dist/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
 
 # Environment files and local secrets
 .env
