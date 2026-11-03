@@ -4,7 +4,7 @@
 
 ## 先说清楚本教程怎样使用这些词
 
-本教程把 **AI 编程（AI coding）**作为一个宽泛称呼，指借助 AI 理解、生成、修改和检查代码等活动。这是便于讨论的编辑约定，不是某个机构颁布的统一分类标准。
+这里我们用 **AI 编程（AI coding）**泛指借助 AI 理解、生成、修改和检查代码等活动。
 
 **Vibe Coding** 的用法则存在差异。Andrej Karpathy 在 2025 年 2 月提出这个词时，描述了一种主要通过自然语言要求模型修改、总是直接接受改动（Accept All）、较少细读差异（diff）而靠观察运行结果与粘贴报错来推进的方式，并指出这种方式“对一次性的周末小项目还算不错（not too bad for throwaway weekend projects）”。这里对原帖内容的介绍依据 Simon Willison 文章中的转引；Willison 自己也主张把这种不读代码的做法与会审阅、理解代码的 AI 辅助工程区分开。[原文转引与作者的区分](https://simonwillison.net/2025/Mar/19/vibe-coding/)
 

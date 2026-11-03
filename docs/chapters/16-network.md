@@ -4,7 +4,7 @@
 
 ## 一个网址包含不止一个名字
 
-下面是一个用于说明结构的虚构网址，`.example` 用于示例，不对应本教程提供的在线服务：
+以一个包含完整组成部分的网址为例：
 
 ```text
 https://notes.example:8443/books/17?view=summary#progress
