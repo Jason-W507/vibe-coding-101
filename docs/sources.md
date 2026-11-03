@@ -1,6 +1,6 @@
 # 参考资料与延伸阅读
 
-正文在具体事实附近提供来源链接。下面按主题列出适合继续查阅的资料，帮助读者找到原始说明，而不是把它们作为读完整本教程的前置任务。初稿核验日期为 **2026 年 9 月 22 日**；线上文档的内容与版本可能继续变化。
+正文在具体事实附近提供来源链接。下面按主题列出适合继续查阅的资料，帮助读者找到原始说明。
 
 ## 计算机基础
 
@@ -38,8 +38,8 @@
 
 ## AI 编程
 
-- [Simon Willison：Not all AI-assisted programming is vibe coding](https://simonwillison.net/2025/Mar/19/vibe-coding/)：作者对术语的明确立场，并转引 Karpathy 的早期描述。初稿未能直接取得 X 原帖正文，因此没有把转引标成直接读取原帖。
-- [Google Cloud：What is vibe coding?](https://cloud.google.com/discover/what-is-vibe-coding)：展示厂商对该词的较宽泛用法；不作为工具效果或学习效果的保证。
+- [Simon Willison：Not all AI-assisted programming is vibe coding](https://simonwillison.net/2025/Mar/19/vibe-coding/)：作者对术语的明确立场，并转引 Karpathy 的早期描述。
+- [Google Cloud：What is vibe coding?](https://cloud.google.com/discover/what-is-vibe-coding)：展示厂商对该词的较宽泛用法。
 - [Anthropic：Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)：模型借助工具和环境反馈推进任务的工程说明。
 - [Anthropic：Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)：关于上下文、信息选择及长期任务记录的工程说明。
 - [OpenAI：Why language models hallucinate](https://openai.com/index/why-language-models-hallucinate/)：关于模型错误与评价机制的研究说明。

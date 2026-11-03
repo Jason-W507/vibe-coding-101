@@ -4,7 +4,7 @@
 
 ## Python：观察一小段逻辑
 
-使用 Python 3，每个文件独立运行，不安装第三方包。初稿作者使用 CPython 3.14.4 验证；这不是最低版本声明。可在项目根目录的终端中运行（例如 `python examples/python/07-languages-runtime-01.py`，macOS / Linux 上常见为 `python3 ...`）。不同系统的解释器启动名称可能不同，应以自己的环境为准。
+使用 Python 3，每个文件独立运行，不安装第三方包。可在项目根目录的终端中运行（例如 `python examples/python/07-languages-runtime-01.py`，macOS / Linux 上常见为 `python3 ...`）。
 
 控制台的显示结果与对应正文一起阅读。第 13 篇的异步示例以独立脚本运行；在 Jupyter 等已经有运行中事件循环的笔记本环境里，直接调用 `asyncio.run(main())` 会报错，需改为直接 `await main()`。
 
