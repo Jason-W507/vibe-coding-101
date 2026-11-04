@@ -26,12 +26,14 @@
 | **编译 / 解释 / 运行时** | 把源码转成目标格式叫编译；边读边执行叫解释；支撑程序跑起来的环境叫运行时（如 Node.js）。 | [第 07 篇](chapters/07-languages-runtime.md) |
 | **动态类型与类型注解** | Python/JS 中类型属于运行时的值而非变量名；Python 类型注解仅供提示和静态检查，运行时不拦截。 | [第 08 篇](chapters/08-values-types.md) |
 | **`None` / `null` / `undefined`** | 表示“空缺 / 没有值”，不同于数字 `0` 或空字符串 `""`。 | [第 08 篇](chapters/08-values-types.md) |
+| **正则表达式（Regex）** | 描述文本结构规则的模式记号（如 `\d{4}-\d{2}-\d{2}` 匹配日期），常用于校验格式或提取片段。 | [第 08 篇](chapters/08-values-types.md) |
 | **作用域（Scope）** | 一个变量名字在代码中能被直接访问的有效范围（如函数内部 vs 模块全局）。 | [第 10 篇](chapters/10-functions.md) |
 | **副作用（Side Effect）** | 函数除了计算返回值之外，还改变了外部状态（如写文件、发请求、改数据库或改传入的可变对象）。 | [第 10 篇](chapters/10-functions.md) |
 | **回溯信息（Traceback）** | 程序未捕获异常时打印的“从入口一路调用到报错行”的堆栈记录。 | [第 12 篇](chapters/12-errors.md) |
 | **异步（`async` / `await`）与 `Promise`** | 等待网络或磁盘时不卡死当前线程、稍后拿到结果再继续的编程机制。 | [第 13 篇](chapters/13-concurrency.md) |
 | **竞态条件（Race Condition）** | 多个并发操作交错读写同一份状态，导致结果因执行先后巧合而出错。 | [第 13 篇](chapters/13-concurrency.md) |
 | **时间复杂度（如 $O(n)$、$O(1)$）** | 描述当输入数据规模 $n$ 变大时，算法所需操作次数增长快慢的趋势。 | [第 15 篇](chapters/15-algorithms.md) |
+| **分页（Pagination）与缓存（Cache）** | 分页是按批次（偏移或游标）取数据以免卡死；缓存是暂存计算结果以空间换时间，需处理数据更新后的缓存失效。 | [第 15 篇](chapters/15-algorithms.md) |
 
 ## 网络、Web 与数据库
 
@@ -44,10 +46,14 @@
 | **幂等（Idempotent）** | 同一个请求重复执行多次，对系统资源状态产生的影响与执行一次相同（不会重复扣款或重复插记录）。 | [第 17 篇](chapters/17-http.md)、[第 23 篇](chapters/23-web-journey.md) |
 | **CORS（跨域资源共享）** | 浏览器的同源安全限制：前端页面请求不同端口或域名的后端接口时，需要后端显式返回允许头或配置同源代理。 | [第 17 篇](chapters/17-http.md) |
 | **DOM** | 浏览器把 HTML 解析成的树形对象结构，JavaScript 通过修改 DOM 来改变页面显示。 | [第 18 篇](chapters/18-frontend.md) |
+| **盒子模型 / Flexbox / Grid / Tailwind** | CSS 布局基础：盒子模型描述元素边距与内边距；Flexbox/Grid 负责一维/二维排版；Tailwind 用简短类名组合样式。 | [第 18 篇](chapters/18-frontend.md) |
+| **组件（Component）、Props 与响应式状态（State）** | 现代前端把界面拆成可复用积木（组件），通过 Props 传参，通过响应式状态（如 `useState` / `ref`）驱动界面自动更新。 | [第 18 篇](chapters/18-frontend.md) |
 | **SSR / CSR / SPA** | SSR 是服务器生成好 HTML 再发给浏览器；CSR/SPA 是浏览器拿到骨架后用 JS 请求数据并渲染页面。 | [第 18 篇](chapters/18-frontend.md) |
 | **API（接口）与路由** | 程序之间约定的调用入口与数据格式；路由决定哪个请求地址交给哪段后端函数处理。 | [第 11 篇](chapters/11-modules-interfaces.md)、[第 19 篇](chapters/19-backend-api.md) |
+| **Webhook（反向回调）** | 当支付完成或外部任务结束时，由第三方服务器主动向你的后端网址发送 HTTP 通知的机制，需校验签名。 | [第 19 篇](chapters/19-backend-api.md) |
 | **JSON** | 用文本表示“对象（键值对）”和“数组（列表）”的跨语言通用数据交换格式。 | [第 14 篇](chapters/14-data-structures.md)、[第 17 篇](chapters/17-http.md) |
 | **主键（Primary Key）与外键（Foreign Key）** | 主键唯一标识表里的一行记录；外键引用另一张表的主键以约束关联关系。 | [第 20 篇](chapters/20-database.md)、[第 21 篇](chapters/21-indexes-transactions.md) |
+| **对象存储（Object Storage，如 S3 / R2）** | 专门存放图片、PDF、音视频等大文件的云端存储服务；数据库表里通常只存文件的路径或 URL。 | [第 20 篇](chapters/20-database.md) |
 | **SQL 注入（SQL Injection）** | 把用户输入直接拼接进 SQL 字符串，导致输入内容被当成数据库命令执行的高危漏洞；需用参数化查询防范。 | [第 20 篇](chapters/20-database.md) |
 | **索引（Index）与事务（Transaction）** | 索引是用额外结构加快查询；事务保证一组数据库修改“要么全部成功提交，要么全部回滚撤销”。 | [第 21 篇](chapters/21-indexes-transactions.md) |
 | **认证（AuthN）与授权（AuthZ）** | 认证解决“你是谁（登录）”；授权解决“你能不能动这条数据（权限）”。 | [第 22 篇](chapters/22-identity.md) |
@@ -65,7 +71,11 @@
 | **工作区 / 暂存区 / Commit / Diff** | Git 中正在改的文件叫工作区；准备提交的叫暂存区；`commit` 是存盘点；`diff` 是前后改动逐行对比。 | [第 27 篇](chapters/27-git.md) |
 | **回归测试（Regression Test）** | 修改代码后重新运行已有检查，确认“修好新问题时没有把旧功能改坏”。 | [第 29 篇](chapters/29-testing.md) |
 | **构建（Build）与 CI/CD** | 构建是把源码打包转换成可交付产物；CI/CD 是在提交代码后自动运行检查、构建与部署的流水线。 | [第 30 篇](chapters/30-build-deploy.md) |
+| **Electron / Tauri / PWA** | 把 Web 前端界面打包成桌面软件（Electron / Tauri）或可安装网页应用（PWA）的跨端技术。 | [第 00 篇](chapters/00-overview.md)、[第 30 篇](chapters/30-build-deploy.md) |
+| **Serverless（无服务器函数）与冷启动** | 按请求临时拉起执行、用完即回收的云端运行模式，本地磁盘和内存不跨请求持久保留，久未访问首次触发会有冷启动延迟。 | [第 30 篇](chapters/30-build-deploy.md) |
+| **流式输出（Streaming / SSE）与结构化输出** | 流式输出让模型回答逐字返回以免长时间白屏；结构化输出（JSON Schema）约束模型严格按指定字段格式返回以便程序解析。 | [第 32 篇](chapters/32-ai-coding.md) |
 | **Token 与上下文窗口** | 模型由分词器（tokenizer）切分处理的文本片段叫 token；单次对话与文件能塞进模型的总量上限叫上下文窗口。 | [第 33 篇](chapters/33-models-context.md) |
+| **RAG（检索增强生成）与向量（Embedding）** | 先把长文档切块并检索出最相关的几段（常借助语义向量 Embedding），再塞进本次上下文让模型据实回答的架构模式。 | [第 33 篇](chapters/33-models-context.md) |
 | **智能体（Agent）与 MCP** | 能自主循环调用工具（读文件、跑命令）并根据反馈行动的 AI 系统；MCP 是连接外部工具与数据源的通用协议。 | [第 33 篇](chapters/33-models-context.md) |
 | **`AGENTS.md` / `CLAUDE.md`** | 放在项目根目录、让 AI 工具每次自动读取的项目结构、运行命令与禁止事项说明文件。 | [第 33 篇](chapters/33-models-context.md) |
 | **幻觉与提示注入（Prompt Injection）** | 幻觉是模型用肯定语气编造不存在的函数或事实；提示注入是外部不可信文本夹带指令劫持 AI 行为。 | [第 35 篇](chapters/35-ai-limits.md) |

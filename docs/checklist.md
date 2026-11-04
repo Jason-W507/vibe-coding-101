@@ -29,7 +29,7 @@
 
 - [ ] **源码与 Git 历史无密钥**：确认 `.env` 没有被纳入版本库（`git status` / `git diff --cached`）；若不慎把 API Key 提交并推送到了公开仓库，**立即去服务商后台作废（Revoke）并轮换新密钥**，而不是只删文件重提。（[第 27 篇](chapters/27-git.md)）
 - [ ] **前端代码无私有密钥**：确认大模型付费 API Key、数据库管理密码（如 `service_role` key）没有写在前端代码里，也没有放在 `VITE_`、`NEXT_PUBLIC_`、`REACT_APP_` 开头的环境变量中；并在付费 API 后台设置了每月用量上限（spend limit）。（[第 18 篇](chapters/18-frontend.md)、[第 30 篇](chapters/30-build-deploy.md)）
-- [ ] **后端独立做权限与参数化校验**：确认后端接口不仅检查“是否登录（认证）”，还检查“该记录是否属于当前用户（授权 / 防 IDOR）”；SQL 查询全部使用参数化占位符而非字符串拼接（防 SQL 注入）；若使用 Supabase 等托管后端，每张表均已开启并验证 **RLS（行级安全策略）**。（[第 19 篇](chapters/19-backend-api.md)、[第 20 篇](chapters/20-database.md)、[第 22 篇](chapters/22-identity.md)）
-- [ ] **明确线上数据存储位置**：确认线上应用没有把需要长期保留的用户数据写进 Serverless 或容器的临时本地文件系统，并且数据库有独立备份与恢复方案。（[第 30 篇](chapters/30-build-deploy.md)、[第 31 篇](chapters/31-maintenance.md)）
+- [ ] **后端独立做权限、参数化与回调签名校验**：确认后端接口不仅检查“是否登录（认证）”，还检查“该记录是否属于当前用户（授权 / 防 IDOR）”；SQL 查询全部使用参数化占位符而非字符串拼接（防 SQL 注入）；接收第三方 Webhook 的接口校验了数字签名与幂等去重；若使用 Supabase 等托管后端，每张表均已开启并验证 **RLS（行级安全策略）**。（[第 19 篇](chapters/19-backend-api.md)、[第 20 篇](chapters/20-database.md)、[第 22 篇](chapters/22-identity.md)）
+- [ ] **明确线上数据与文件存储位置**：确认线上应用没有把需要长期保留的用户数据或上传的图片/文件写进 Serverless 或容器的临时本地文件系统，而是分别存入了云端数据库与对象存储（S3 / R2 / Supabase Storage），并且数据库有独立备份与恢复方案。（[第 20 篇](chapters/20-database.md)、[第 30 篇](chapters/30-build-deploy.md)、[第 31 篇](chapters/31-maintenance.md)）
 
 [返回完整目录](../README.md) · [常见问题索引](questions.md) · [常见术语速查表](glossary.md)

@@ -15,6 +15,7 @@
 | [08-values-types-02.py](python/08-values-types-02.py) | [变量、值、类型与表达式](../docs/chapters/08-values-types.md) |
 | [08-values-types-03.py](python/08-values-types-03.py) | [变量、值、类型与表达式](../docs/chapters/08-values-types.md) |
 | [08-values-types-04.py](python/08-values-types-04.py) | [变量、值、类型与表达式](../docs/chapters/08-values-types.md) |
+| [08-values-types-05.py](python/08-values-types-05.py) | [变量、值、类型与表达式](../docs/chapters/08-values-types.md) |
 | [09-control-flow-01.py](python/09-control-flow-01.py) | [条件与循环](../docs/chapters/09-control-flow.md) |
 | [09-control-flow-02.py](python/09-control-flow-02.py) | [条件与循环](../docs/chapters/09-control-flow.md) |
 | [09-control-flow-03.py](python/09-control-flow-03.py) | [条件与循环](../docs/chapters/09-control-flow.md) |
